@@ -1,29 +1,83 @@
-function iniciarJuego(){
+let ataqueJugador
+let ataqueEnemigo
+
+function iniciarJuego() {
     let botonMascotaJugador = document.getElementById('boton-mascota')
-    botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador)    
+    botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador)
+
+    let botonFuego = document.getElementById('boton-fuego')
+    botonFuego.addEventListener('click', ataqueFuego)
+    let botonAgua = document.getElementById('boton-agua')
+    botonAgua.addEventListener('click', ataqueAgua)
+    let botonTierra = document.getElementById('boton-tierra')
+    botonTierra.addEventListener('click', ataqueTierra)
+
+    ataqueEne
+
 }
 
 function seleccionarMascotaJugador() {
     let inputHipodoge = document.getElementById('hipodoge')
-    let inputCapipepo = document.getElementById('capipeo')
+    let inputCapipepo = document.getElementById('capipepo')
     let inputratigueya = document.getElementById('ratigueya')
-    
-    if(inputHipodoge.checked){
-        alert('SELECCIONASTE TU hipodoge')
-    }
+    let spanMascotaJugador = document.getElementById('mascota-jugador')
 
-    else if(inputCapipepo.checked){
-        alert('SELECCIONASTE TU capipepo')
-    }
-
-    else if(inputratigueya.checked){
-        alert('SELECCIONASTE TU ratigueya')
-    }
-    
-    else{
+    if (inputHipodoge.checked) {
+        spanMascotaJugador.innerHTML = 'Hipodoge'
+    } else if (inputCapipepo.checked) {
+        spanMascotaJugador.innerHTML = 'Capipepo'
+    } else if (inputratigueya.checked) {
+        spanMascotaJugador.innerHTML = 'Ratigueya'
+    } else {
         alert('No seleccionaste nada')
     }
-  
+
+    seleccionarMascotaEnemigo()
+}
+
+function seleccionarMascotaEnemigo() {
+    let mascotaAleatoria = aleatorio(1, 3)
+    let spanMascotaEnemigo = document.getElementById('mascota-enemigo')
+
+    if (mascotaAleatoria == 1) {
+        spanMascotaEnemigo.innerHTML = 'Hipodoge'
+    } else if (mascotaAleatoria == 2) {
+        spanMascotaEnemigo.innerHTML = 'Capipepo'
+    } else {
+        spanMascotaEnemigo.innerHTML = 'Ratigueya'
+    }
+
+}
+
+function ataqueFuego() {
+    ataqueJugador = 'FUEGO'
+    ataqueEnemigo()
+}
+
+function ataqueAgua() {
+    ataqueJugador = 'AGUA'
+    ataqueEnemigo()
+}
+
+function ataqueTierra() {
+    ataqueJugador = 'TIERRA'
+    ataqueEnemigo()
+}
+
+function ataqueAleatorioEnemigo() {
+    let ataqueAleatorio = aleatorio(1, 3)
+
+    if (ataqueAleatorio == 1) {
+        ataqueEnemigo = 'FUEGO'
+    } else if (ataqueAleatorio == 2) {
+        ataqueEnemigo = 'AGUA'
+    } else {
+        ataqueEnemigo = 'TIERRA'
+    }
+}
+
+function aleatorio(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 window.addEventListener('load', iniciarJuego)
