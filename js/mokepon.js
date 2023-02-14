@@ -56,27 +56,27 @@ let capipepo = new Mokepon('Capipepo', './assets/capipepo.png', 5)
 let ratigueya = new Mokepon('Ratigueya', './assets/ratigueya.png', 5)
 
 hipodoge.ataques.push(
-    { nombre: '💧', id: 'boton-agua' },
-    { nombre: '💧', id: 'boton-agua' },
-    { nombre: '💧', id: 'boton-agua' },
-    { nombre: '🔥', id: 'boton-fuego' },
-    { nombre: '🌱', id: 'boton-tierra' },
+    { nombre: '💧 Agua 💧', id: 'boton-agua' },
+    { nombre: '💧 Agua 💧', id: 'boton-agua' },
+    { nombre: '💧 Agua 💧', id: 'boton-agua' },
+    { nombre: '🔥 Fuego 🔥', id: 'boton-fuego' },
+    { nombre: '🌱 Tierra 🌱', id: 'boton-tierra' },
 )
 
 capipepo.ataques.push(
-    { nombre: '🌱', id: 'boton-tierra' },
-    { nombre: '🌱', id: 'boton-tierra' },
-    { nombre: '🌱', id: 'boton-tierra' },
-    { nombre: '💧', id: 'boton-agua' },
-    { nombre: '🔥', id: 'boton-fuego' },
+    { nombre: '🌱 Tierra 🌱', id: 'boton-tierra' },
+    { nombre: '🌱 Tierra 🌱', id: 'boton-tierra' },
+    { nombre: '🌱 Tierra 🌱', id: 'boton-tierra' },
+    { nombre: '💧 Agua 💧', id: 'boton-agua' },
+    { nombre: '🔥 Fuego 🔥', id: 'boton-fuego' },
 )
 
 ratigueya.ataques.push(
-    { nombre: '🔥', id: 'boton-fuego' },
-    { nombre: '🔥', id: 'boton-fuego' },
-    { nombre: '🔥', id: 'boton-fuego' },
-    { nombre: '💧', id: 'boton-agua' },
-    { nombre: '🌱', id: 'boton-tierra' },
+    { nombre: '🔥 Fuego 🔥', id: 'boton-fuego' },
+    { nombre: '🔥 Fuego 🔥', id: 'boton-fuego' },
+    { nombre: '🔥 Fuego 🔥', id: 'boton-fuego' },
+    { nombre: '💧 Agua 💧', id: 'boton-agua' },
+    { nombre: '🌱 Tierra 🌱', id: 'boton-tierra' },
 )
 
 mokepones.push(hipodoge, capipepo, ratigueya)
@@ -165,21 +165,21 @@ function mostrarAtaques(ataques) {
 function secuenciaAtaque() {
     botones.forEach((boton) => {
         boton.addEventListener('click', (e) => {
-            if (e.target.textContent === '🔥') {
+            if (e.target.textContent === '🔥 Fuego 🔥') {
                 ataqueJugador.push('FUEGO')
                 console.log(ataqueJugador)
                 boton.style.backgroundColor = '#C147E9'
-
-            } else if (e.target.textContent === '💧') {
+                boton.disabled = true
+            } else if (e.target.textContent === '💧 Agua 💧') {
                 ataqueJugador.push('AGUA')
                 console.log(ataqueJugador)
                 boton.style.backgroundColor = '#C147E9'
-
+                boton.disabled = true
             } else {
                 ataqueJugador.push('TIERRA')
                 console.log(ataqueJugador)
                 boton.style.backgroundColor = '#C147E9'
-
+                boton.disabled = true
             }
 
             ataqueAleatorioEnemigo()
@@ -229,8 +229,6 @@ function combate() {
         if (ataqueJugador[index] === ataqueEnemigo[index]) {
             indexAmbosOponente(index, index)
             crearMensaje("EMPATE")
-            victoriasJugador++
-            spanVidasJugador.innerHTML = victoriasJugador
         } else if (ataqueJugador[index] === 'FUEGO' && ataqueEnemigo[index] === 'TIERRA') {
             indexAmbosOponente(index, index)
             crearMensaje("GANASTE")
@@ -250,7 +248,7 @@ function combate() {
             indexAmbosOponente(index, index)
             crearMensaje("PERDISTE")
             victoriasEnemigo++
-            spanMascotaEnemigo.innerHTML = victoriasEnemigo
+            spanVidasEnemigo.innerHTML = victoriasEnemigo
         }
     }
 
@@ -282,17 +280,7 @@ function crearMensaje(resultado) {
 }
 
 function crearMensajeFinal(resultadoFinal) {
-
-
     sectionMensajes.innerHTML = resultadoFinal
-
-
-    botonFuego.disabled = true
-
-    botonAgua.disabled = true
-
-    botonTierra.disabled = true
-
 
     sectionReiniciar.style.display = 'block'
 }
