@@ -48,8 +48,8 @@ let alturaQueBuscamos
 let anchoDelMapa = window.innerWidth - 200
 const anchoMaximoDelMapa = 1400
 
-if (anchoDelMapa > anchoMaximoDelMapa) {   
-    anchoDelMapa = anchoMaximoDelMapa - 500    
+if (anchoDelMapa > anchoMaximoDelMapa) {
+    anchoDelMapa = anchoMaximoDelMapa - 500
 }
 
 alturaQueBuscamos = anchoDelMapa * 600 / 1000
@@ -170,6 +170,20 @@ function iniciarJuego() {
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador)
 
     botonReiniciar.addEventListener('click', reiniciarJuego)
+
+    unirseAlJuego()
+}
+
+function unirseAlJuego() {
+    fetch("http://localhost:8080/unirse")
+        .then(function (res) {
+            if(res.ok){
+                res.text()
+                .then(function (respuesta){
+                    console.log(respuesta)
+                })
+            }
+        })
 }
 
 function seleccionarMascotaJugador() {
